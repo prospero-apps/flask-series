@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h1>Welcome to <strong>{{ app_name }}</strong> - our basic Flask application</h1>
+    <p>This app is not suitable for individuals under the age of {{ age_limit }}.</p>
+    {% if numbers|length == 1 %}
+    <p>There's just one number in the list, {{ numbers[0] }}.</p>
+    {% elif numbers|length < 5 %}
+    <p>There are just {{ numbers|length }} numbers in the list.</p>
+    {% else %}
+    <p>There are lots of numbers in the list.</p>
+    <p>Here they are:</p>
+        <ol>
+            {% for number in numbers %}
+                <li>
+                    number {{ number }}
+                </li>
+            {% endfor %}
+        </ol>
+    {% endif %}
+
+    <a href='/fun_stuff'>Take a break, have some fun!</a>
+    <a href="{{ url_for('fun_stuff') }}">Have fun using this dynamic link!</a>    
+{% endblock %}
