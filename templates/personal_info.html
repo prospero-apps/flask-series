@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Personal Information{% endblock %}
+
+{% block content %}
+    <h1>Personal Information</h1>
+    <form method="POST" action="{{ url_for('personal_info') }}">
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <input type="submit" value="Log in">
+    </form>
+
+    <h2>Upload your file...</h2>
+    <form method="POST" action="{{ url_for('file_upload') }}" enctype="multipart/form-data">
+        <input type="file" accept="image/*, .csv" name="file">
+        <input type="submit" value="Upload file">
+    </form>    
+{% endblock %}
