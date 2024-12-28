@@ -15,3 +15,8 @@ We'll learn how to handle the GET, POST, PUT and DELETE HTTP requests. Last but 
 In this part we'll be talking about templates in Flask. We'll be talking about static and dynamic HTML content. We'll be using the Jinja templating engine.
 We'll also see how to extend templates, use Jinja filters and dynamic URLs and how to handle redirections.
 ![image](https://github.com/user-attachments/assets/4f683abb-754b-4c6d-9043-3268ab2b8df3)
+
+## Part 4: POST Requests in Flask
+In this part we'll be talking about POST requests in Flask. We'll learn how to submit a form to the server. We'll also learn how to upload files. 
+In particular, we'll see how to upload an image file and a CSV file and then display their contents in the browser.
+![image](https://github.com/user-attachments/assets/70e1cb7e-807d-42ee-9ec6-747896811c49)
