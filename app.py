@@ -2,7 +2,9 @@ from flask import Flask, render_template, redirect, url_for, request, send_file
 import pandas as pd
 import os
 
-app = Flask(__name__, template_folder='templates')
+app = Flask(__name__, template_folder='templates', 
+            static_folder='static',
+            static_url_path='/')
 
 UPLOAD_FOLDER = 'uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
