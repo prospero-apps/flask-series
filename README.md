@@ -20,3 +20,9 @@ We'll also see how to extend templates, use Jinja filters and dynamic URLs and h
 In this part we'll be talking about POST requests in Flask. We'll learn how to submit a form to the server. We'll also learn how to upload files. 
 In particular, we'll see how to upload an image file and a CSV file and then display their contents in the browser.
 ![image](https://github.com/user-attachments/assets/70e1cb7e-807d-42ee-9ec6-747896811c49)
+
+## Part 5: Static Files in Flask
+In this part of the series we’ll be talking about static files in Flask. What are static files in the first place? Well, these are CSS files, JavaScript scripts, images, and so on. 
+So, how do we load JavaScript scripts into our HTML files? How do we link stylesheets? How do we write paths to our images? Also, we’ll integrate Bootstrap into our app to get a whole 
+bunch of beautiful styles out of the box.
+![image](https://github.com/user-attachments/assets/930914a8-b19f-46e6-83da-1cee3fa2c685)
