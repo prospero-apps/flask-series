@@ -3,10 +3,11 @@
 
 {% block content %}
     <h1 class="greeting">Hey there</h1>  
-    
-    <img src="/images/head photo.jpg" alt="alternative text">
-
-    <button type="button" class="btn btn-outline-danger">Beware...</button>
-
-    <script src="/js/greeter.js"></script>
+    <p>{{ message }}</p>
+    <a href="{{ url_for('set_personal_data') }}">Set Your Personal Data</a><br>
+    <a href="{{ url_for('get_personal_data') }}">Get Your Personal Data</a><br>
+    <a href="{{ url_for('clear_session') }}">Clear the Session</a><br>
+    <a href="{{ url_for('set_cookie') }}">Set Your Cookie</a><br>
+    <a href="{{ url_for('get_cookie') }}">Get Your Cookie</a><br>
+    <a href="{{ url_for('remove_cookie') }}">Remove Your Cookie</a>
 {% endblock %}

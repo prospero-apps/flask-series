@@ -1,4 +1,11 @@
-from flask import Flask, render_template, redirect, url_for, request, send_file
+from flask import (Flask, 
+                   render_template, 
+                   redirect, 
+                   url_for, 
+                   request, 
+                   send_file, 
+                   session, 
+                   make_response)
 import pandas as pd
 import os
 
@@ -6,16 +13,15 @@ app = Flask(__name__, template_folder='templates',
             static_folder='static',
             static_url_path='/')
 
+app.secret_key = 'MY SECRET KEY'
+
 UPLOAD_FOLDER = 'uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
 def index():
-    app_name = 'Super App'
-    age_limit = 13
-    numbers = [3, 5, 7, 2, 9]
-    return render_template('index.html', app_name=app_name, age_limit=age_limit, numbers=numbers)
+    return render_template('index.html', message='Nice to see you.')
 
 @app.route('/contact')
 def contact():
@@ -74,6 +80,45 @@ def file_upload():
 def serve_image(filename):
     filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
     return send_file(filepath, mimetype='image/*')
+
+@app.route('/set_personal_data')
+def set_personal_data():
+    session['first_name'] = 'Jamie'
+    session['last_name'] = 'McFee'
+    return render_template('index.html', message='Your personal data has been set.')
+
+@app.route('/get_personal_data')
+def get_personal_data():
+    if 'first_name' in session and 'last_name' in session:
+        first_name = session['first_name']
+        last_name = session['last_name']
+        return render_template('index.html', 
+                               message=f'first name: {first_name}, last name: {last_name}')
+    else:
+        return render_template('index.html', 
+                               message='No session found.')
+    
+@app.route('/clear_session')
+def clear_session():
+    session.clear()
+    return render_template('index.html', message='Session cleared.')
+
+@app.route('/set_cookie')
+def set_cookie():    
+    response = make_response(render_template('index.html', message='Cookie set.'))
+    response.set_cookie('name', 'my_cookie')
+    return response
+
+@app.route('/get_cookie')
+def get_cookie():  
+    cookie_value = request.cookies['name']
+    return render_template('index.html', message=f'Cookie value: {cookie_value}')
+
+@app.route('/remove_cookie')
+def remove_cookie():  
+    response = make_response(render_template('index.html', message='Cookie removed.'))
+    response.set_cookie('name', expires=0)
+    return response
 
 @app.template_filter('every_other_letter')
 def every_other_letter(word):
