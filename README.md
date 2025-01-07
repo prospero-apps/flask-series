@@ -26,3 +26,9 @@ In this part of the series we’ll be talking about static files in Flask. What 
 So, how do we load JavaScript scripts into our HTML files? How do we link stylesheets? How do we write paths to our images? Also, we’ll integrate Bootstrap into our app to get a whole 
 bunch of beautiful styles out of the box.
 ![image](https://github.com/user-attachments/assets/930914a8-b19f-46e6-83da-1cee3fa2c685)
+
+## Part 6: Sessions and Cookies in Flask
+In this part of the series we’ll be talking about preserving information across multiple requests using sessions and cookies. Both sessions and cookies are used to preserve information 
+across multiple requests. The major difference between sessions and cookies is the place where the information is stored. Sessions are used on the server side and if the information 
+is sensitive and needs to be kept secure, this is the way to go. Otherwise, we can use cookies to save it in the user’s browser on the client side.
+![image](https://github.com/user-attachments/assets/5622bf25-cd8c-4b91-8532-7c842f67001e)
