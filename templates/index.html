@@ -1,13 +1,39 @@
-{% extends 'base.html' %}
-{% block title %}Home{% endblock %}
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
 
 {% block content %}
-    <h1 class="greeting">Hey there</h1>  
-    <p>{{ message }}</p>
-    <a href="{{ url_for('set_personal_data') }}">Set Your Personal Data</a><br>
-    <a href="{{ url_for('get_personal_data') }}">Get Your Personal Data</a><br>
-    <a href="{{ url_for('clear_session') }}">Clear the Session</a><br>
-    <a href="{{ url_for('set_cookie') }}">Set Your Cookie</a><br>
-    <a href="{{ url_for('get_cookie') }}">Get Your Cookie</a><br>
-    <a href="{{ url_for('remove_cookie') }}">Remove Your Cookie</a>
+<h1>The Students</h1>
+
+    <ol>
+        {% for student in students %}
+            <a href="{{ url_for('details', id=student.id) }}">
+                <li>{{ student }} <button onclick="deleteStudent({{ student.id }})">Delete</button></li>
+            </a>
+        {% endfor %}
+    </ol>
+
+    <h2>Add Student</h2>
+    <form action="{{ url_for('index') }}" method="POST">
+        <input type="text" name="firstname" placeholder="First Name" required><br>
+        <input type="text" name="lastname" placeholder="Last Name" required><br>
+        <input type="number" name="age" placeholder="Age"><br>
+        <input type="submit" value="Add">
+    </form>
+
+    <script type="text/javascript">
+        function deleteStudent(id) {
+            fetch("{{ url_for('delete', id=id) }}" + id, {
+                method: 'DELETE'
+            }).then(response => {
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    console.error('Failed to delete the student with id ', id);
+                }
+            }).catch(error => {
+                console.error('Something went wrong: ', error);
+            });
+        }
+    </script>
+
 {% endblock %}
