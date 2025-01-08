@@ -32,3 +32,9 @@ In this part of the series we’ll be talking about preserving information acros
 across multiple requests. The major difference between sessions and cookies is the place where the information is stored. Sessions are used on the server side and if the information 
 is sensitive and needs to be kept secure, this is the way to go. Otherwise, we can use cookies to save it in the user’s browser on the client side.
 ![image](https://github.com/user-attachments/assets/5622bf25-cd8c-4b91-8532-7c842f67001e)
+
+## Part 7: Databases in Flask
+We’re going to use the SQLite database in our app. When working with databases in Flask, we don’t work directly with the tables, but rather with objects that are mapped to tables using 
+an object-relational mapper (ORM). The ORM we’re going to use is SQLAlchemy. We'll add functionality to add new items to the database, to delete items and to display detailed information 
+about a selected item.
+![image](https://github.com/user-attachments/assets/c196e5a9-f0dc-40f7-90fc-b1be2b843df2)
