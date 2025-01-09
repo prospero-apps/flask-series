@@ -2,38 +2,14 @@
 {% block title %}Index{% endblock %}
 
 {% block content %}
-<h1>The Students</h1>
-
-    <ol>
-        {% for student in students %}
-            <a href="{{ url_for('details', id=student.id) }}">
-                <li>{{ student }} <button onclick="deleteStudent({{ student.id }})">Delete</button></li>
-            </a>
-        {% endfor %}
-    </ol>
-
-    <h2>Add Student</h2>
-    <form action="{{ url_for('index') }}" method="POST">
-        <input type="text" name="firstname" placeholder="First Name" required><br>
-        <input type="text" name="lastname" placeholder="Last Name" required><br>
-        <input type="number" name="age" placeholder="Age"><br>
-        <input type="submit" value="Add">
-    </form>
-
-    <script type="text/javascript">
-        function deleteStudent(id) {
-            fetch("{{ url_for('delete', id=id) }}" + id, {
-                method: 'DELETE'
-            }).then(response => {
-                if (response.ok) {
-                    window.location.reload();
-                } else {
-                    console.error('Failed to delete the student with id ', id);
-                }
-            }).catch(error => {
-                console.error('Something went wrong: ', error);
-            });
-        }
-    </script>
-
+    {% if current_user.is_authenticated %}
+        <h2>Hey {{ current_user.username }}</h3>
+        <a href="{{ url_for('logout') }}">Log Out</a>
+    {% else %}
+        <h2>Hey anonymous user</h3>
+        <p>Consider logging in or signing up.</p><br>
+        <a href="{{ url_for('login') }}">Log In</a><br>
+        <a href="{{ url_for('signup') }}">Sign Up</a>
+    {% endif %}   
+    <br><a href="{{ url_for('not_for_everyone') }}">Ressources for the Chosen Ones</a>
 {% endblock %}
