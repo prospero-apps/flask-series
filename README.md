@@ -38,3 +38,10 @@ We’re going to use the SQLite database in our app. When working with databases
 an object-relational mapper (ORM). The ORM we’re going to use is SQLAlchemy. We'll add functionality to add new items to the database, to delete items and to display detailed information 
 about a selected item.
 ![image](https://github.com/user-attachments/assets/c196e5a9-f0dc-40f7-90fc-b1be2b843df2)
+
+## Part 8: User Authentication in Flask
+In this part, we’ll create a User model and implement user authentication. The user will be able to sign up, log in and log. We're going to implement a simple login sytem with a username and 
+password. We'll also create an endpoint that can be accessed only by logged-in users. The usernames and passwords will be stored in the database. The passwords won't be stored in plain text, 
+though. Instead, we'll use bcrypt to hash them.
+
+![image](https://github.com/user-attachments/assets/81fddd83-5c09-47d8-a477-1445d1c3a7d9)
