@@ -1,10 +1,36 @@
-from flask import Flask
+from flask import Flask, redirect, url_for
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+from flask_login import LoginManager
+from flask_bcrypt import Bcrypt
 
-app = Flask(__name__)
+db = SQLAlchemy()
 
-@app.route('/')
-def index():
-    return 'Hello World'
+def create_app():
+    app = Flask(__name__, template_folder='templates')
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///./mydb.db'
+    app.secret_key = 'SAMPLE KEY'
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    db.init_app(app)
+
+    login_manager = LoginManager()
+    login_manager.init_app(app)
+
+    from models import User
+
+    @login_manager.user_loader
+    def load_user(id):
+        return User.query.get(id)
+    
+    @login_manager.unauthorized_handler
+    def unauthorized():
+        return redirect(url_for('index'))
+    
+    bcrypt = Bcrypt(app)
+
+    from routes import register_routes
+    register_routes(app, db, bcrypt)
+
+    migrate = Migrate(app, db)
+
+    return app
